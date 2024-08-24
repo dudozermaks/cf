@@ -10,3 +10,111 @@ path = "src/279_b.rs"
 [[bin]]
 name = "550_c"
 path = "src/550_c.rs"
+
+[[bin]]
+name = "1999_A"
+path = "src/1999_A.rs"
+
+[[bin]]
+name = "1999_b"
+path = "src/1999_b.rs"
+
+[[bin]]
+name = "1999_e"
+path = "src/1999_e.rs"
+
+[[bin]]
+name = "1999_c"
+path = "src/1999_c.rs"
+
+[[bin]]
+name = "1999_d"
+path = "src/1999_d.rs"
+
+[[bin]]
+name = "1999_g"
+path = "src/1999_g.rs"
+
+[[bin]]
+name = "1999_f"
+path = "src/1999_f.rs"
+
+[[bin]]
+name = "550_a"
+path = "src/550_a.rs"
+
+[[bin]]
+name = "550_b"
+path = "src/550_b.rs"
+
+[[bin]]
+name = "550_d"
+path = "src/550_d.rs"
+
+[[bin]]
+name = "1998_a"
+path = "src/1998_a.rs"
+
+[[bin]]
+name = "1998_b"
+path = "src/1998_b.rs"
+
+[[bin]]
+name = "466_c"
+path = "src/466_c.rs"
+
+[[bin]]
+name = "474_d"
+path = "src/474_d.rs"
+
+[[bin]]
+name = "20_c"
+path = "src/20_c.rs"
+
+[[bin]]
+name = "2000_a"
+path = "src/2000_a.rs"
+
+[[bin]]
+name = "2000_b"
+path = "src/2000_b.rs"
+
+[[bin]]
+name = "2000_c"
+path = "src/2000_c.rs"
+
+[[bin]]
+name = "2000_d"
+path = "src/2000_d.rs"
+
+[[bin]]
+name = "2000_e"
+path = "src/2000_e.rs"
+
+[[bin]]
+name = "2000_f"
+path = "src/2000_f.rs"
+
+[[bin]]
+name = "189_A"
+path = "src/189_A.rs"
+
+[[bin]]
+name = "545_c"
+path = "src/545_c.rs"
+
+[[bin]]
+name = "1398_c"
+path = "src/1398_c.rs"
+
+[[bin]]
+name = "2001_a"
+path = "src/2001_a.rs"
+
+[[bin]]
+name = "2001_b"
+path = "src/2001_b.rs"
+
+[[bin]]
+name = "2001_c"
+path = "src/2001_c.rs"
