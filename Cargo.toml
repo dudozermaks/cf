@@ -118,3 +118,35 @@ path = "src/2001_b.rs"
 [[bin]]
 name = "2001_c"
 path = "src/2001_c.rs"
+
+[[bin]]
+name = "431_c"
+path = "src/431_c.rs"
+
+[[bin]]
+name = "1526_c"
+path = "src/1526_c.rs"
+
+[[bin]]
+name = "1336_a"
+path = "src/1336_a.rs"
+
+[[bin]]
+name = "317667_a"
+path = "src/317667_a.rs"
+
+[[bin]]
+name = "317667_b"
+path = "src/317667_b.rs"
+
+[[bin]]
+name = "317667_c"
+path = "src/317667_c.rs"
+
+[[bin]]
+name = "317667_d"
+path = "src/317667_d.rs"
+
+[[bin]]
+name = "317667_e"
+path = "src/317667_e.rs"
