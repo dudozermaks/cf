@@ -150,3 +150,19 @@ path = "src/317667_d.rs"
 [[bin]]
 name = "317667_e"
 path = "src/317667_e.rs"
+
+[[bin]]
+name = "2007_a"
+path = "src/2007_a.rs"
+
+[[bin]]
+name = "2007_b"
+path = "src/2007_b.rs"
+
+[[bin]]
+name = "2007_c"
+path = "src/2007_c.rs"
+
+[[bin]]
+name = "339_d"
+path = "src/339_d.rs"
