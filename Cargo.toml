@@ -166,3 +166,43 @@ path = "src/2007_c.rs"
 [[bin]]
 name = "339_d"
 path = "src/339_d.rs"
+
+[[bin]]
+name = "2008_a"
+path = "src/2008_a.rs"
+
+[[bin]]
+name = "2008_b"
+path = "src/2008_b.rs"
+
+[[bin]]
+name = "2008_c"
+path = "src/2008_c.rs"
+
+[[bin]]
+name = "2008_d"
+path = "src/2008_d.rs"
+
+[[bin]]
+name = "2008_e"
+path = "src/2008_e.rs"
+
+[[bin]]
+name = "2009_a"
+path = "src/2009_a.rs"
+
+[[bin]]
+name = "2009_b"
+path = "src/2009_b.rs"
+
+[[bin]]
+name = "2009_c"
+path = "src/2009_c.rs"
+
+[[bin]]
+name = "2009_d"
+path = "src/2009_d.rs"
+
+[[bin]]
+name = "2009_e"
+path = "src/2009_e.rs"
