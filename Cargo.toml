@@ -206,3 +206,67 @@ path = "src/2009_d.rs"
 [[bin]]
 name = "2009_e"
 path = "src/2009_e.rs"
+
+[[bin]]
+name = "126_b"
+path = "src/126_b.rs"
+
+[[bin]]
+name = "977_f"
+path = "src/977_f.rs"
+
+[[bin]]
+name = "478_c"
+path = "src/478_c.rs"
+
+[[bin]]
+name = "2006_a"
+path = "src/2006_a.rs"
+
+[[bin]]
+name = "2010_c"
+path = "src/2010_c.rs"
+
+[[bin]]
+name = "2005_a"
+path = "src/2005_a.rs"
+
+[[bin]]
+name = "2005_b"
+path = "src/2005_b.rs"
+
+[[bin]]
+name = "2005_e"
+path = "src/2005_e.rs"
+
+[[bin]]
+name = "2008_f"
+path = "src/2008_f.rs"
+
+[[bin]]
+name = "1996_e"
+path = "src/1996_e.rs"
+
+[[bin]]
+name = "2014_a"
+path = "src/2014_a.rs"
+
+[[bin]]
+name = "2014_b"
+path = "src/2014_b.rs"
+
+[[bin]]
+name = "2014_d"
+path = "src/2014_d.rs"
+
+[[bin]]
+name = "2014_c"
+path = "src/2014_c.rs"
+
+[[bin]]
+name = "2014_e"
+path = "src/2014_e.rs"
+
+[[bin]]
+name = "2019_a"
+path = "src/2019_a.rs"

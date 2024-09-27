@@ -14,46 +14,49 @@ fn main() {
         io::stdin().read_line(&mut buf).unwrap();
         let s: Vec<char> = buf.trim().chars().collect();
 
-        let mut cache_count: [HashMap<char, u64>; 2] = [
-            HashMap::from_iter(('a'..'z').map(|x| (x, 0))),
-            HashMap::from_iter(('a'..'z').map(|x| (x, 0))),
+        let mut suff: [HashMap<char, u64>; 2] = [
+            HashMap::from_iter(('a'..='z').into_iter().map(|c| (c, 0))),
+            HashMap::from_iter(('a'..='z').into_iter().map(|c| (c, 0))),
         ];
-
-        let mut cache_max: Vec<(char, u64)> = vec![(s[0], 1), (s[1], 1)];
-
-        for (i, c) in s.iter().skip(2).enumerate() {
-            let handle = cache_count[i % 2].get_mut(c).unwrap();
-            *handle += 1;
-            //                     i is already i-2, if you think about it
-            if *handle > cache_max[i].1 {
-                cache_max.push((*c, *handle));
-            } else {
-                cache_max.push(*cache_max.last().unwrap());
-            }
+        for (i, c) in s.iter().enumerate() {
+            *suff[i % 2].get_mut(c).unwrap() += 1;
         }
 
         if n % 2 == 0 {
-            println!("{}", n as u64 - cache_max[n - 1].1 - cache_max[n - 2].1);
-        } else {
-            let chars_to_count = [cache_max[n - 2].0, cache_max[n - 1].0];
-            let mut max_char_count = vec![];
+            let mut res = n as u64;
             for i in 0..2 {
-                max_char_count.push(if s[i] == chars_to_count[i] { 1 } else { 0 });
-            }
-            for (i, c) in s.iter().skip(2).enumerate() {
-                let char_to_count = chars_to_count[i % 2];
-                //                        i is already i-2, if you think about it
-                let last = max_char_count[i];
-                if char_to_count == *c {
-                    max_char_count.push(last + 1);
-                } else {
-                    max_char_count.push(last);
+                let mut max = 0;
+                for (_, count) in &suff[i] {
+                    max = max.max(*count);
                 }
+                res -= max;
             }
 
-            let 
-            for i in 0..n {
+            println!("{res}");
+        } else {
+            let mut pref: [HashMap<char, u64>; 2] = [
+                HashMap::from_iter(('a'..='z').into_iter().map(|c| (c, 0))),
+                HashMap::from_iter(('a'..='z').into_iter().map(|c| (c, 0))),
+            ];
+            let mut res = u64::max_value();
+            for (i, c) in s.iter().enumerate() {
+                *suff[i % 2].get_mut(c).unwrap() -= 1;
+
+                let mut new_res = n as u64;
+                for i in 0..2 {
+                    let mut max = 0;
+                    for c in 'a'..='z' {
+                        max = max.max(pref[i][&c] + suff[i ^ 1][&c]);
+                    }
+                    new_res -= max;
+                }
+
+                res = res.min(new_res);
+
+                *pref[i % 2].get_mut(c).unwrap() += 1;
             }
+
+            println!("{res}");
         }
     }
 }

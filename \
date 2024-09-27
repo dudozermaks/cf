@@ -1,0 +1,143 @@
+use std::{cmp::Reverse, collections::BinaryHeap, io};
+
+#[derive(PartialEq, Eq)]
+struct Record {
+    weight: u64,
+    pos: usize,
+}
+
+impl Ord for Record {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.weight.cmp(&other.weight)
+    }
+}
+
+impl PartialOrd for Record {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+struct Man {
+    start: usize,
+    min: Vec<u64>,
+    horse_visited: Vec<bool>
+    n: usize,
+    robin: bool,
+}
+
+impl Man {
+    fn new(s: usize, n: usize, robin: bool) -> Self {
+        Man {
+            start: s,
+            min: vec![u64::max_value(); n],
+            horse_visited: vec![false; n];
+            n,
+            robin,
+        }
+    }
+    fn calculate(&mut self, a: &Vec<bool>, graph: &Vec<Vec<(usize, u64)>>) {
+        let start_pos = if self.robin { 0 } else { self.n - 1 };
+        let horses = self.dijkstra(a, graph, start_pos, a[start_pos], 0);
+
+        for horse in horses {
+            self.dijkstra(a, graph, horse, true, self.min[horse]);
+        }
+    }
+    fn dijkstra(
+        &mut self,
+        a: &Vec<bool>,
+        graph: &Vec<Vec<(usize, u64)>>,
+        pos: usize,
+        on_horse: bool,
+        weight: u64,
+    ) -> Vec<usize> {
+        let mut out = vec![false; self.n];
+        let mut weighs: Vec<Option<u64>> = vec![None; self.n];
+        let mut queue = BinaryHeap::from([Reverse(Record { pos, weight })]);
+        let mut horses = vec![];
+
+        while let Some(Reverse(n)) = queue.pop() {
+            if out[n.pos] {
+                continue;
+            }
+            out[n.pos] = true;
+
+            for (child, weight) in &graph[n.pos] {
+                let new_weight = weight + n.weight / if on_horse { 2 } else { 1 };
+
+                if weighs[*child].is_some_and(|x| x > new_weight) {
+                    weighs[*child] = Some(new_weight);
+                }
+
+                if on_horse || !a[*child] {
+                    queue.push(Reverse(Record {
+                        weight: new_weight,
+                        pos: *child,
+                    }));
+                } else {
+                    horses.push(*child);
+                }
+            }
+        }
+
+        for (i, weight) in weighs.iter().enumerate() {
+            if weight.is_some_and(|x| x < self.min[i]) {
+                self.min[i] = weight.unwrap();
+            }
+        }
+
+        horses
+    }
+}
+
+fn main() {
+    let mut buf = String::new();
+    io::stdin().read_line(&mut buf).unwrap();
+
+    let tests: usize = buf.trim().parse().unwrap();
+    for _ in 0..tests {
+        buf.clear();
+        io::stdin().read_line(&mut buf).unwrap();
+        let (n, m, h) = {
+            let mut buf = buf.split_whitespace().map(|x| x.trim());
+            (
+                buf.next().unwrap().parse::<usize>().unwrap(),
+                buf.next().unwrap().parse::<usize>().unwrap(),
+                buf.next().unwrap().parse::<usize>().unwrap(),
+            )
+        };
+        let a = {
+            buf.clear();
+            io::stdin().read_line(&mut buf).unwrap();
+            let a: Vec<usize> = buf
+                .trim()
+                .split_whitespace()
+                .map(|x| x.trim().parse().unwrap())
+                .collect();
+            let mut new_a = vec![false; n];
+            for i in a {
+                new_a[i] = true;
+            }
+
+            new_a
+        };
+
+        let mut graph = vec![vec![]; n];
+        for _ in 0..m {
+            buf.clear();
+            io::stdin().read_line(&mut buf).unwrap();
+            let (u, v, w) = {
+                let mut buf = buf.split_whitespace().map(|x| x.trim());
+                (
+                    buf.next().unwrap().parse::<usize>().unwrap() - 1,
+                    buf.next().unwrap().parse::<usize>().unwrap() - 1,
+                    buf.next().unwrap().parse::<u64>().unwrap(),
+                )
+            };
+
+            graph[u].push((v, w));
+            graph[v].push((u, w));
+        }
+    }
+}

@@ -11,7 +11,7 @@ fn main() {
         let n: usize = buf.trim().parse().unwrap();
         let mut points1: [Vec<bool>; 2] = [vec![false; n + 1], vec![false; n + 1]];
         let mut points2: [Vec<usize>; 2] = [vec![], vec![]];
-        for i in 0..n {
+        for _ in 0..n {
             buf.clear();
             io::stdin().read_line(&mut buf).unwrap();
             let (x, y) = {

@@ -1,5 +1,9 @@
 use std::io;
 
+fn sum(from: u64, to: u64) -> u64 {
+    (to - from + 1) * (to + from) / 2
+}
+
 fn main() {
     let mut buf = String::new();
     io::stdin().read_line(&mut buf).unwrap();
@@ -11,26 +15,37 @@ fn main() {
         let (n, k) = {
             let mut buf = buf.split_whitespace().map(|x| x.trim());
             (
-                buf.next().unwrap().parse::<i64>().unwrap(),
-                buf.next().unwrap().parse::<i64>().unwrap(),
+                buf.next().unwrap().parse::<u64>().unwrap(),
+                buf.next().unwrap().parse::<u64>().unwrap(),
             )
         };
 
-        let mut cur_min = k;
-        let mut cur_max = k + n - 1;
+        let from = k;
+        let to = from + n - 1;
 
-        let mut sum = 0;
-        
-        while cur_min < cur_max {
-            if sum >= cur_max {
-                sum -= cur_max;
-                cur_max -= 1;
-            } else {
-                sum += cur_min;
-                cur_min += 1;
+        let mut p1 = from;
+        let mut p2 = to;
+
+        while p1 != p2 - 1 {
+            let mid = (p1 + p2) / 2;
+            let s1 = sum(from, mid);
+            let s2 = sum(mid, to) - mid;
+
+            if s1 < s2 {
+                p1 = mid;
+            }
+            else {
+                p2 = mid;
             }
         }
 
-        println!("{}", sum.min((sum - cur_max).abs()));
+        let mid = (p1 + p2) / 2;
+        let s1 = sum(from, mid);
+        let s2 = sum(mid, to) - mid;
+
+        let s3 = sum(from, mid) - mid;
+        let s4 = sum(mid, to);
+
+        println!("{}", (s1.abs_diff(s2)).min(s3.abs_diff(s4)));
     }
 }

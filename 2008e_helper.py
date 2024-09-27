@@ -1,7 +1,8 @@
+from random import choice
+from string import ascii_lowercase 
+
 print("1")
-s = ""
-for i in range(0, 200000-1):
-    s += 'a'
+s = ''.join(choice(ascii_lowercase) for i in range(200000))
 
 print(len(s))
 print(s)
